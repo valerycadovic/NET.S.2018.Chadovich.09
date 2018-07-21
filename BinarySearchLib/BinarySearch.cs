@@ -125,7 +125,7 @@
         /// <exception cref="System.ArgumentOutOfRangeException">invalid borders</exception>
         private static void ValidateBorders(int start, int end, int length)
         {
-            if (start >= end || start < 0 || start >= length || end < 0 || end > length)
+            if (start > end || start < 0 || start > length || end < 0 || end > length)
             {
                 throw new ArgumentOutOfRangeException("invalid borders");
             }

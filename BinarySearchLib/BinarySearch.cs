@@ -1,4 +1,6 @@
-﻿namespace BinarySearchLib
+﻿using System.Collections.Generic;
+
+namespace BinarySearchLib
 {
     using System;
 
@@ -10,7 +12,50 @@
     /// </typeparam>
     public static class BinarySearch<T>
     {
-        #region Public API
+        #region Public API        
+        /// <summary>
+        /// Searches the specified array.
+        /// </summary>
+        /// <param name="array">The array.</param>
+        /// <param name="item">The item.</param>
+        /// <param name="comparer">The comparer.</param>
+        /// <returns></returns>
+        public static int Search(T[] array, T item, IComparer<T> comparer)
+        {
+            return Search(array, item, comparer, 0);
+        }
+
+        /// <summary>
+        /// Searches the specified array.
+        /// </summary>
+        /// <param name="array">The array.</param>
+        /// <param name="item">The item.</param>
+        /// <param name="comparer">The comparer.</param>
+        /// <param name="start">The start.</param>
+        /// <returns></returns>
+        public static int Search(T[] array, T item, IComparer<T> comparer, int start)
+        {
+            ValidateOnNull(array, nameof(array));
+
+            return Search(array, item, comparer, start, array.Length);
+        }
+
+        /// <summary>
+        /// Searches the specified array.
+        /// </summary>
+        /// <param name="array">The array.</param>
+        /// <param name="item">The item.</param>
+        /// <param name="comparer">The comparer.</param>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <returns></returns>
+        public static int Search(T[] array, T item, IComparer<T> comparer, int start, int end)
+        {
+            ValidateOnNull(comparer, nameof(comparer));
+
+            return Search(array, item, comparer.Compare, start, end);
+        }
+
         /// <summary>
         /// Searches the element in sorted array.
         /// </summary>

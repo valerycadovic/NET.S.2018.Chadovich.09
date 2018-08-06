@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace BinarySearchLib
+﻿namespace BinarySearchLib
 {
     using System;
-
+    using System.Collections.Generic;
+   
     /// <summary>
     /// Binary search class
     /// </summary>
@@ -20,7 +19,7 @@ namespace BinarySearchLib
         /// <param name="item">The item.</param>
         /// <param name="comparer">The comparer.</param>
         /// <returns></returns>
-        public static int Search(T[] array, T item, IComparer<T> comparer)
+        public static int? Search(T[] array, T item, IComparer<T> comparer)
         {
             return Search(array, item, comparer, 0);
         }
@@ -33,7 +32,7 @@ namespace BinarySearchLib
         /// <param name="comparer">The comparer.</param>
         /// <param name="start">The start.</param>
         /// <returns></returns>
-        public static int Search(T[] array, T item, IComparer<T> comparer, int start)
+        public static int? Search(T[] array, T item, IComparer<T> comparer, int start)
         {
             ValidateOnNull(array, nameof(array));
 
@@ -49,7 +48,7 @@ namespace BinarySearchLib
         /// <param name="start">The start.</param>
         /// <param name="end">The end.</param>
         /// <returns></returns>
-        public static int Search(T[] array, T item, IComparer<T> comparer, int start, int end)
+        public static int? Search(T[] array, T item, IComparer<T> comparer, int start, int end)
         {
             ValidateOnNull(comparer, nameof(comparer));
 
@@ -68,7 +67,7 @@ namespace BinarySearchLib
         /// <exception cref="System.ArgumentNullException">
         /// Throws when array or compare is null
         /// </exception>
-        public static int Search(T[] array, T item, Comparison<T> compare)
+        public static int? Search(T[] array, T item, Comparison<T> compare)
             => Search(array, item, compare, 0);
 
         /// <summary>
@@ -85,7 +84,7 @@ namespace BinarySearchLib
         /// Throws when array or compare is null
         /// </exception>
         /// <exception cref="System.ArgumentOutOfRangeException">invalid borders</exception>
-        public static int Search(T[] array, T item, Comparison<T> compare, int start)
+        public static int? Search(T[] array, T item, Comparison<T> compare, int start)
         {
             ValidateOnNull(array, nameof(array));
 
@@ -107,7 +106,7 @@ namespace BinarySearchLib
         /// Throws when array or compare is null
         /// </exception>
         /// <exception cref="System.ArgumentOutOfRangeException">invalid borders</exception>
-        public static int Search(T[] array, T item, Comparison<T> compare, int start, int end)
+        public static int? Search(T[] array, T item, Comparison<T> compare, int start, int end)
         {
             ValidateOnNull(array, nameof(array));
             ValidateOnNull(compare, nameof(compare));
@@ -115,7 +114,7 @@ namespace BinarySearchLib
 
             if (array.Length == 0 || compare(item, array[start]) < 0 || compare(item, array[end - 1]) > 0)
             {
-                return -1;
+                return null;
             }
 
             while (end > start)
@@ -137,7 +136,7 @@ namespace BinarySearchLib
                 return end;
             }
 
-            return -1;
+            return null;
         }
         #endregion
 

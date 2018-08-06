@@ -16,10 +16,10 @@ namespace BinarySearch_Tests
         [TestCase(new int[] { 1, 1, 1, 4, 5 }, 1, ExpectedResult = 0)]
         [TestCase(new int[] { 1, 1, 1, 4, 5, 6 }, 1, ExpectedResult = 0)]
         [TestCase(new int[] { 1, 2, 3, 4, 5, 5 }, 5, ExpectedResult = 4)]
-        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 6, ExpectedResult = -1)]
-        [TestCase(new int[] { 1, 2, 3, 4, 7 }, 6, ExpectedResult = -1)]
-        [TestCase(new int[] {}, 2, ExpectedResult = -1)]
-        public int Can_Search_On_Int(int[] array, int item)
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 6, ExpectedResult = null)]
+        [TestCase(new int[] { 1, 2, 3, 4, 7 }, 6, ExpectedResult = null)]
+        [TestCase(new int[] {}, 2, ExpectedResult = null)]
+        public int? Can_Search_On_Int(int[] array, int item)
         {
             int compare(int a, int b)
             {
@@ -42,7 +42,7 @@ namespace BinarySearch_Tests
         public void Throws_ArgumentNull_On_Null_Comparison()
         {
             Assert.Throws<ArgumentNullException>(() =>
-                BinarySearch<int>.Search(new int[]{}, 1, null));
+                BinarySearch<int>.Search(new int[]{}, 1, (IComparer<int>)null));
         }
 
         [TestCase(1, 6)]
@@ -50,7 +50,6 @@ namespace BinarySearch_Tests
         [TestCase(4, 3)]
         [TestCase(-2, -1)]
         [TestCase(7, 8)]
-        [TestCase(3, 3)]
         public void Throws_When_Invalid_Borders(int start, int end)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
